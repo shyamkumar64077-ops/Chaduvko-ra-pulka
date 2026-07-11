@@ -18,6 +18,9 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Extract Android project
+        run: unzip -q study-launcher-source-v1.1.zip
+
       - name: Set up Gradle
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.10.2-bin.zip
@@ -25,11 +28,12 @@ jobs:
           echo "$PWD/gradle-8.10.2/bin" >> "$GITHUB_PATH"
 
       - name: Build APK
+        working-directory: android-study-launcher
         run: gradle --no-daemon assembleDebug
 
       - name: Save installable APK
         uses: actions/upload-artifact@v4
         with:
           name: Study-Launcher-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: android-study-launcher/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
