@@ -1,4 +1,4 @@
-# Study Launcher — Android 16
+# Study Launcher — Android 16 (v1.1)
 
 This app schedules your lessons and tries to open the matching YouTube video at each scheduled time. It opens the **YouTube app first**, then uses the default browser if YouTube is not installed.
 
