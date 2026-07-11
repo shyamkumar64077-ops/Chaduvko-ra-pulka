@@ -19,7 +19,15 @@ jobs:
           java-version: '17'
 
       - name: Extract Android project
-        run: unzip -q study-launcher-source-v1.1.zip
+        run: |
+          ZIP_FILE=$(ls *.zip 2>/dev/null | head -1)
+          if [ -z "$ZIP_FILE" ]; then
+            echo "No ZIP file found in repository"
+            exit 1
+          fi
+          echo "Found ZIP: $ZIP_FILE"
+          unzip -q "$ZIP_FILE"
+          ls -la
 
       - name: Set up Gradle
         run: |
